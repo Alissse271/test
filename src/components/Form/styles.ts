@@ -1,6 +1,7 @@
 import { dropdown, user } from "assets";
 import styled from "styled-components";
 import { Color } from "ui";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
 const FormContainer = styled.div`
 	width: 100%;
@@ -25,8 +26,10 @@ const Subtitle = styled.h2`
 	color: ${Color.GRAY};
 `;
 const StyledForm = styled.form`
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 14px;
+	grid-row-gap: 16px;
 
 	max-width: 528px;
 	width: 100%;
@@ -36,20 +39,40 @@ const StyledLabel = styled.label`
 	flex-direction: column;
 	row-gap: 5px;
 
-	width: 50%;
+	width: 100%;
 
 	font-size: 12px;
 	line-height: 14px;
 	color: ${Color.GRAY};
 `;
+const StyledFormControlLabel = styled(FormControlLabel)`
+	&.MuiFormControlLabel-root {
+		margin-right: 19px;
+	}
+	&.MuiRadio-root {
+		padding: 0;
+	}
+`;
+const StyledRadio = styled(Radio)`
+	&.MuiRadio-root {
+		padding: 0 6px 0 9px;
+	}
+`;
 const StyledInput = styled.input`
 	width: 100%;
+
+	padding: 5px 0 6px 0;
 
 	font-size: 14px;
 	line-height: 16px;
 	color: ${Color.BLACK};
 
 	background-color: transparent;
+	border-bottom: 0.7px solid ${Color.LIGHT};
+
+	&:focus-visible {
+		outline: none;
+	}
 `;
 const StyledSelect = styled.select`
 	width: 100%;
@@ -69,4 +92,15 @@ const StyledSelect = styled.select`
 	}
 `;
 const StyledOption = styled.option``;
-export { FormContainer, Title, Subtitle, StyledForm, StyledSelect, StyledLabel, StyledInput, StyledOption };
+export {
+	FormContainer,
+	Title,
+	Subtitle,
+	StyledForm,
+	StyledSelect,
+	StyledLabel,
+	StyledInput,
+	StyledOption,
+	StyledFormControlLabel,
+	StyledRadio,
+};

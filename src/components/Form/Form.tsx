@@ -7,6 +7,8 @@ import {
 	StyledInput,
 	StyledSelect,
 	StyledOption,
+	StyledFormControlLabel,
+	StyledRadio,
 } from "./styles";
 import { useForm, Controller } from "react-hook-form";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
@@ -71,28 +73,34 @@ export const Form = () => {
 						defaultValue="male"
 						render={({ field }) => (
 							<RadioGroup row={true} aria-label="gender" {...field} name="gender">
-								<FormControlLabel
+								<StyledFormControlLabel
 									value="male"
 									control={
-										<Radio
+										<StyledRadio
 											sx={{
 												color: `${Color.SECONDARY}`,
 												"&.Mui-checked": {
 													color: `${Color.SECONDARY}`,
+												},
+												"& .MuiSvgIcon-root": {
+													fontSize: 18,
 												},
 											}}
 										/>
 									}
 									label="Male"
 								/>
-								<FormControlLabel
+								<StyledFormControlLabel
 									value="female"
 									control={
-										<Radio
+										<StyledRadio
 											sx={{
 												color: `${Color.SECONDARY}`,
 												"&.Mui-checked": {
 													color: `${Color.SECONDARY}`,
+												},
+												"& .MuiSvgIcon-root": {
+													fontSize: 18,
 												},
 											}}
 										/>

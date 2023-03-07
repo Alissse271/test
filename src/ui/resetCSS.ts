@@ -1,10 +1,8 @@
 import { css } from "styled-components";
 
 export const resetCSS = css`
-	body {
-		font-family: "Work Sans", sans-serif;
-	}
 	* {
+		font-family: "Work Sans", sans-serif;
 		padding: 0;
 		margin: 0;
 		border: 0;

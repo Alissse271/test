@@ -30,7 +30,7 @@ const AsideContainer = styled.div`
 const AsideTitle = styled.h1`
 	padding: 22.5px 0 0 6.5px;
 
-	font-weight: 400;
+	font-family: "PT Sans", sans-serif;
 	font-size: 49px;
 	line-height: 63px;
 	letter-spacing: 0.5px;
