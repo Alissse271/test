@@ -1,3 +1,5 @@
+import { Container } from "components";
+
 export const App = () => {
-	return <div>App</div>;
+	return <Container />;
 };
