@@ -37,7 +37,6 @@ const StyledForm = styled.form`
 const StyledLabel = styled.label`
 	display: flex;
 	flex-direction: column;
-	row-gap: 5px;
 
 	width: 100%;
 
@@ -92,6 +91,11 @@ const StyledSelect = styled.select`
 	}
 `;
 const StyledOption = styled.option``;
+const ErrorMessage = styled.p`
+	font-size: 12px;
+	line-height: 14px;
+	color: ${Color.ERROR};
+`;
 export {
 	FormContainer,
 	Title,
@@ -103,4 +107,5 @@ export {
 	StyledOption,
 	StyledFormControlLabel,
 	StyledRadio,
+	ErrorMessage,
 };

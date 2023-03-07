@@ -9,10 +9,12 @@ import {
 	StyledOption,
 	StyledFormControlLabel,
 	StyledRadio,
+	ErrorMessage,
 } from "./styles";
-import { useForm, Controller } from "react-hook-form";
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { RadioGroup } from "@mui/material";
 import { Color } from "ui";
+import { emailValidation, nameValidation, passwordValidation } from "utils";
 
 enum NationalityEnum {
 	american = "american",
@@ -26,9 +28,9 @@ interface FormProps {
 	lastName: string;
 	nationality: NationalityEnum;
 	email: string;
-	birthDay: { label: string; value: string };
-	birthMounth: { label: string; value: string };
-	birthYear: { label: string; value: string };
+	day: string;
+	month: string;
+	year: string;
 	radioGroup: string;
 	password: string;
 	confirmPassword: string;
@@ -38,21 +40,30 @@ export const Form = () => {
 	const {
 		control,
 		register,
+		handleSubmit,
+		watch,
+		getValues,
 		formState: { errors },
-	} = useForm();
+	} = useForm<FormProps>();
+
+	const onSubmit: SubmitHandler<FormProps> = () => {
+		console.log("yes");
+	};
 
 	return (
 		<FormContainer>
 			<Title>New user?</Title>
 			<Subtitle>Use the form below to create your account.</Subtitle>
-			<StyledForm>
+			<StyledForm onSubmit={handleSubmit(onSubmit)}>
 				<StyledLabel>
 					First Name
-					<StyledInput type="text" />
+					<StyledInput type="text" {...register("firstName", nameValidation())} />
+					{errors.firstName && <ErrorMessage>{errors.firstName.message}</ErrorMessage>}
 				</StyledLabel>
 				<StyledLabel>
 					Last Name
-					<StyledInput type="text" />
+					<StyledInput type="text" {...register("lastName", nameValidation())} />
+					{errors.lastName && <ErrorMessage>{errors.lastName.message}</ErrorMessage>}
 				</StyledLabel>
 				<StyledLabel>
 					Nationality
@@ -65,7 +76,51 @@ export const Form = () => {
 				</StyledLabel>
 				<StyledLabel>
 					E-mail
-					<StyledInput type="email" defaultValue="alice.miller@yahoo.com" />
+					<StyledInput type="email" {...register("email", emailValidation())} />
+					{errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+				</StyledLabel>
+
+				<StyledLabel>
+					Date of Birth
+					<div>
+						<StyledSelect {...register("day", { required: true })}>
+							{Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+								<StyledOption key={day} value={day}>
+									{day}
+								</StyledOption>
+							))}
+						</StyledSelect>
+						{errors.day && <ErrorMessage>*day is required</ErrorMessage>}
+						<StyledSelect {...register("month", { required: true })}>
+							{[
+								{ value: 1, label: "January" },
+								{ value: 2, label: "February" },
+								{ value: 3, label: "March" },
+								{ value: 4, label: "April" },
+								{ value: 5, label: "May" },
+								{ value: 6, label: "June" },
+								{ value: 7, label: "July" },
+								{ value: 8, label: "August" },
+								{ value: 9, label: "September" },
+								{ value: 10, label: "October" },
+								{ value: 11, label: "November" },
+								{ value: 12, label: "December" },
+							].map((month) => (
+								<StyledOption key={month.value} value={month.value}>
+									{month.label}
+								</StyledOption>
+							))}
+						</StyledSelect>
+						{errors.month && <ErrorMessage>*month is required</ErrorMessage>}
+						<StyledSelect {...register("year", { required: true })}>
+							{Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+								<StyledOption key={year} value={year}>
+									{year}
+								</StyledOption>
+							))}
+						</StyledSelect>
+						{errors.year && <ErrorMessage>*year is required</ErrorMessage>}
+					</div>
 				</StyledLabel>
 				<StyledLabel>
 					Gender
@@ -110,18 +165,23 @@ export const Form = () => {
 							</RadioGroup>
 						)}
 						rules={{ required: true }}
-						name="RadioGroup"
+						name="radioGroup"
 						control={control}
 					/>
 				</StyledLabel>
 				<StyledLabel>
 					Password
-					<StyledInput type="password" />
+					<StyledInput type="password" {...register("password", passwordValidation())} />
+					{errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
 				</StyledLabel>
 				<StyledLabel>
 					Confirm Password
-					<StyledInput type="password" />
+					<StyledInput type="password" {...register("confirmPassword", { required: true })} />
+					{watch("confirmPassword") !== watch("password") && getValues("confirmPassword") ? (
+						<ErrorMessage>*password not match</ErrorMessage>
+					) : null}
 				</StyledLabel>
+				<button type="submit">submit</button>
 			</StyledForm>
 		</FormContainer>
 	);
