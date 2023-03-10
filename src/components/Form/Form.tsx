@@ -53,7 +53,21 @@ export const Form = () => {
 	} = useForm<FormProps>();
 
 	const onSubmit: SubmitHandler<FormProps> = () => {
-		console.log("yes");
+		fetch("server-ok.json")
+			.then((response) => {
+				console.log(response.statusText);
+			})
+			.catch((error) => {
+				console.error(error);
+				fetch("server-error.json")
+					.then((errorData) => {
+						console.log(errorData);
+					})
+					.catch((error) => {
+						console.error(error);
+						console.error("Не удалось получить сообщение об ошибке");
+					});
+			});
 	};
 
 	return (
