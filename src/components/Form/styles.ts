@@ -1,11 +1,13 @@
 import { dropdown, user } from "assets";
 import styled from "styled-components";
 import { Color } from "ui";
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { FormControlLabel, Radio } from "@mui/material";
 
 const FormContainer = styled.div`
+	display: grid;
+	grid-template-rows: min-content min-content 1fr;
 	width: 100%;
-
+	min-height: 100%;
 	padding: 39px 22px 33px 21px;
 
 	background: right bottom no-repeat url(${user}), ${Color.WHITE};
@@ -15,7 +17,7 @@ const Title = styled.h1`
 	line-height: 26px;
 	letter-spacing: -0.46px;
 
-	color: ${Color.BLACK};
+	color: ${Color.DARK};
 `;
 const Subtitle = styled.h2`
 	padding-bottom: 20px;
@@ -26,6 +28,13 @@ const Subtitle = styled.h2`
 	color: ${Color.GRAY};
 `;
 const StyledForm = styled.form`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	max-width: 528px;
+	width: 100%;
+`;
+const FieldsContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-column-gap: 14px;
@@ -64,7 +73,7 @@ const StyledInput = styled.input`
 
 	font-size: 14px;
 	line-height: 16px;
-	color: ${Color.BLACK};
+	color: ${Color.DARK};
 
 	background-color: transparent;
 	border-bottom: 0.7px solid ${Color.LIGHT};
@@ -82,7 +91,7 @@ const StyledSelect = styled.select`
 	line-height: 16px;
 
 	appearance: none;
-	background: right 5px no-repeat url(${dropdown}), transparent;
+	background: right center no-repeat url(${dropdown}), transparent;
 	border-bottom: 0.7px solid ${Color.LIGHT};
 	cursor: pointer;
 
@@ -91,6 +100,38 @@ const StyledSelect = styled.select`
 	}
 `;
 const StyledOption = styled.option``;
+const SelectContainer = styled.div`
+	display: grid;
+	grid-template-columns: 1.5fr 3fr 2fr;
+	column-gap: 9.8px;
+`;
+const SignBlock = styled.div`
+	display: flex;
+	justify-content: space-between;
+
+	/* align-self: flex-end; */
+`;
+const LoginText = styled.p`
+	font-size: 13px;
+	line-height: 15px;
+	color: ${Color.BLACK};
+`;
+const LoginLink = styled.a`
+	color: ${Color.SECONDARY};
+	text-decoration: underline;
+`;
+const StyledButton = styled.button`
+	width: max-content;
+	padding: 7px 25px;
+
+	font-family: "PT Sans", sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	color: ${Color.WHITE};
+
+	background-color: ${Color.SECONDARY};
+	border: 0.5px solid ${Color.WHITE};
+`;
 const ErrorMessage = styled.p`
 	font-size: 12px;
 	line-height: 14px;
@@ -98,6 +139,7 @@ const ErrorMessage = styled.p`
 `;
 export {
 	FormContainer,
+	FieldsContainer,
 	Title,
 	Subtitle,
 	StyledForm,
@@ -108,4 +150,9 @@ export {
 	StyledFormControlLabel,
 	StyledRadio,
 	ErrorMessage,
+	StyledButton,
+	LoginText,
+	LoginLink,
+	SelectContainer,
+	SignBlock,
 };
