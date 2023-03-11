@@ -6,8 +6,10 @@ import { FormControlLabel, Radio } from "@mui/material";
 const FormContainer = styled.div`
 	display: grid;
 	grid-template-rows: min-content min-content 1fr;
+
+	max-width: 528px;
 	width: 100%;
-	min-height: 100%;
+
 	padding: 39px 22px 33px 21px;
 
 	background: right bottom no-repeat url(${user}), ${Color.WHITE};
@@ -31,8 +33,6 @@ const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	max-width: 528px;
-	width: 100%;
 `;
 const FieldsContainer = styled.div`
 	display: grid;
@@ -40,8 +40,9 @@ const FieldsContainer = styled.div`
 	grid-column-gap: 14px;
 	grid-row-gap: 16px;
 
-	max-width: 528px;
-	width: 100%;
+	@media (max-width: 678px) {
+		grid-template-columns: 1fr;
+	}
 `;
 const StyledLabel = styled.label`
 	display: flex;
@@ -90,9 +91,10 @@ const StyledSelect = styled.select`
 	font-size: 14px;
 	line-height: 16px;
 
-	appearance: none;
 	background: right center no-repeat url(${dropdown}), transparent;
 	border-bottom: 0.7px solid ${Color.LIGHT};
+
+	appearance: none;
 	cursor: pointer;
 
 	&:focus-visible {
@@ -109,24 +111,34 @@ const SignBlock = styled.div`
 	display: flex;
 	justify-content: space-between;
 
-	/* align-self: flex-end; */
+	@media (max-width: 678px) {
+		margin-top: 20px;
+	}
+	@media (max-width: 475px) {
+		flex-direction: column;
+		row-gap: 16px;
+	}
 `;
 const LoginText = styled.p`
 	font-size: 13px;
 	line-height: 15px;
+
 	color: ${Color.BLACK};
 `;
 const LoginLink = styled.a`
-	color: ${Color.SECONDARY};
 	text-decoration: underline;
+
+	color: ${Color.SECONDARY};
 `;
 const StyledButton = styled.button`
 	width: max-content;
+
 	padding: 7px 25px;
 
 	font-family: "PT Sans", sans-serif;
 	font-size: 14px;
 	line-height: 18px;
+
 	color: ${Color.WHITE};
 
 	background-color: ${Color.SECONDARY};
