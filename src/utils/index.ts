@@ -1,3 +1,3 @@
-import { nameValidation, emailValidation, passwordValidation } from "./formValidation";
+import { nameValidation, emailValidation, passwordValidation, confirmPasswordValidation } from "./formValidation";
 
-export { nameValidation, emailValidation, passwordValidation };
+export { nameValidation, emailValidation, passwordValidation, confirmPasswordValidation };

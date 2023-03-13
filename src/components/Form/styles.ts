@@ -67,7 +67,7 @@ const StyledRadio = styled(Radio)`
 		padding: 0 6px 0 9px;
 	}
 `;
-const StyledInput = styled.input`
+const StyledInput = styled.input<{ error: boolean }>`
 	width: 100%;
 
 	padding: 5px 0 6px 0;
@@ -77,7 +77,7 @@ const StyledInput = styled.input`
 	color: ${Color.DARK};
 
 	background-color: transparent;
-	border-bottom: 0.7px solid ${Color.LIGHT};
+	border-bottom: ${({ error }) => (error ? `0.7px solid ${Color.ERROR}` : `0.7px solid ${Color.LIGHT}`)};
 
 	&:focus-visible {
 		outline: none;
@@ -143,6 +143,8 @@ const StyledButton = styled.button`
 
 	background-color: ${Color.SECONDARY};
 	border: 0.5px solid ${Color.WHITE};
+
+	cursor: pointer;
 `;
 const ErrorMessage = styled.p`
 	font-size: 12px;

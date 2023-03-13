@@ -24,11 +24,17 @@ const emailValidation = () => {
 const passwordValidation = () => {
 	return {
 		required: "*password is required",
-		minLength: {
-			value: 8,
-			message: "*min 8 characters",
+		pattern: {
+			value: /(?=.*\d)(?=.*[a-z]).{8,}/,
+			message: `${"*password must contain at least one number and one uppercase"} 
+		${"and lowercase letter, and at least 8 or more characters"}`,
 		},
 	};
 };
+const confirmPasswordValidation = () => {
+	return {
+		required: "*please, confirm your password",
+	};
+};
 
-export { nameValidation, emailValidation, passwordValidation };
+export { nameValidation, emailValidation, passwordValidation, confirmPasswordValidation };
