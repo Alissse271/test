@@ -38,9 +38,7 @@ const StyledPopup = styled.div`
 `;
 const Title = styled.h2`
 	font-family: "PT Sans", sans-serif;
-	font-size: 49px;
-	line-height: 63px;
-	letter-spacing: 0.5px;
+	font-size: 24px;
 	text-align: center;
 
 	color: ${Color.BLACK};

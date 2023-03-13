@@ -12,7 +12,7 @@ export const Popup = ({ isOpen, toggleModal }: PopupProps) => {
 			{isOpen && (
 				<Wrapper>
 					<StyledPopup>
-						<Title>Accepted!</Title>
+						<Title>Registration completed successfully!</Title>
 						<Button type="button" onClick={toggleModal} label="Close" />
 					</StyledPopup>
 				</Wrapper>

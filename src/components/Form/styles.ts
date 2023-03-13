@@ -2,6 +2,7 @@ import { dropdown, user } from "assets";
 import styled from "styled-components";
 import { Color } from "ui";
 import { FormControlLabel, Radio } from "@mui/material";
+import { motion } from "framer-motion";
 
 const FormContainer = styled.div`
 	display: grid;
@@ -13,21 +14,6 @@ const FormContainer = styled.div`
 	padding: 39px 22px 33px 21px;
 
 	background: right bottom no-repeat url(${user}), ${Color.WHITE};
-`;
-const Title = styled.h1`
-	font-size: 22px;
-	line-height: 26px;
-	letter-spacing: -0.46px;
-
-	color: ${Color.DARK};
-`;
-const Subtitle = styled.h2`
-	padding-bottom: 20px;
-
-	font-size: 14px;
-	line-height: 16px;
-
-	color: ${Color.GRAY};
 `;
 const StyledForm = styled.form`
 	display: flex;
@@ -44,7 +30,7 @@ const FieldsContainer = styled.div`
 		grid-template-columns: 1fr;
 	}
 `;
-const StyledLabel = styled.label`
+const StyledLabel = styled(motion.label)`
 	display: flex;
 	flex-direction: column;
 
@@ -77,13 +63,14 @@ const StyledInput = styled.input<{ error: boolean }>`
 	color: ${Color.DARK};
 
 	background-color: transparent;
-	border-bottom: ${({ error }) => (error ? `0.7px solid ${Color.ERROR}` : `0.7px solid ${Color.LIGHT}`)};
+	border-bottom: ${({ error }) =>
+		error ? `0.7px solid ${Color.ERROR}` : `0.7px solid ${Color.LIGHT}`};
 
 	&:focus-visible {
 		outline: none;
 	}
 `;
-const StyledSelect = styled.select`
+const StyledSelect = styled(motion.select)`
 	width: 100%;
 
 	padding: 5px 0 6px 0;
@@ -102,12 +89,12 @@ const StyledSelect = styled.select`
 	}
 `;
 const StyledOption = styled.option``;
-const SelectContainer = styled.div`
+const SelectContainer = styled(motion.div)`
 	display: grid;
 	grid-template-columns: 1.5fr 3fr 2fr;
 	column-gap: 9.8px;
 `;
-const SignBlock = styled.div`
+const SignBlock = styled(motion.div)`
 	display: flex;
 	justify-content: space-between;
 
@@ -130,7 +117,7 @@ const LoginLink = styled.a`
 
 	color: ${Color.SECONDARY};
 `;
-const StyledButton = styled.button`
+const StyledButton = styled(motion.button)`
 	width: max-content;
 
 	padding: 7px 25px;
@@ -154,8 +141,6 @@ const ErrorMessage = styled.p`
 export {
 	FormContainer,
 	FieldsContainer,
-	Title,
-	Subtitle,
 	StyledForm,
 	StyledSelect,
 	StyledLabel,
